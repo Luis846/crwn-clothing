@@ -5,10 +5,33 @@ import {Switch, Route} from 'react-router-dom';
 import ShopPage from'./pages/shop/shop.components.jsx';
 import Header from './components/header/header-component';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
+import { auth} from './firebase/firebase.utils';
 
 
 
-function App() {
+class App extends React.Component() {
+  constructor(){
+    super();
+    this.state = {
+      currentUser: null
+    }
+  }
+//this handles how to close the application auth changes on firebase
+  unsubscribeFromAuth = null;
+
+
+componentDidMount() {
+  this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
+    this.setState({currentUser: user})
+  })
+}
+
+componentWillUnmount(){
+  this.unsubscribeFromAuth();
+}
+/////////////////////////
+
+  render(){
   return (
     <div>
     <Header/>
@@ -18,7 +41,9 @@ function App() {
         <Route path="/signin" component={SignInAndSignUpPage}/>
       </Switch>
     </div>
-  );
+  )
+  }
+
 }
 
 export default App;
