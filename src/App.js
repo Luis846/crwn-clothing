@@ -5,11 +5,11 @@ import {Switch, Route} from 'react-router-dom';
 import ShopPage from'./pages/shop/shop.components.jsx';
 import Header from './components/header/header-component';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
-import { auth} from './firebase/firebase.utils';
+import { auth } from './firebase/firebase.utils';
 
 
 
-class App extends React.Component() {
+class App extends React.Component {
   constructor(){
     super();
     this.state = {
@@ -34,7 +34,7 @@ componentWillUnmount(){
   render(){
   return (
     <div>
-    <Header/>
+    <Header currentUser={this.state.currentUser}/>
       <Switch>
         <Route exact path="/" component={HomePage}/>
         <Route path="/shop" component={ShopPage}/>
