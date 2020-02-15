@@ -11,6 +11,7 @@ import {setCurrentUser} from './redux/user/user.actions'
 
 
 
+
 class App extends React.Component {
   
 //this handles how to close the application auth changes on firebase
@@ -65,4 +66,4 @@ const mapStateToProps = ({user}) =>({
 const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user))
 });
-export default connect(null,mapDispatchToProps,mapStateToProps)(App);
+export default connect(mapStateToProps,mapDispatchToProps)(App);
